@@ -6,8 +6,7 @@ int main()
 
 	a = 5; b = 20;
 
-	printf("In this case, variable %c is greater.\n",
-			);
+	printf("In this case, variable %i is greater.\n", (a > b) ? a : b);
 
 	return(0);
 }
