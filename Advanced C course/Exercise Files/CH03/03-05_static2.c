@@ -1,23 +1,23 @@
 #include <stdio.h>
 
-char *repeat(char r)
-{
-	int x;
-	char string[32];
 
-	for(x=0;x<32;x++)
-		string[x] = r;
+
+char *repeat(char letter)
+{
+	static char string[16];
+	for(int i=0;i<sizeof(string);i++)
+		string[i] = letter;
 
 	return string;
 }
 
 int main()
 {
-	char c;
+	char input;
 
 	printf("Type a character: ");
-	scanf("%c",&c);
-	printf("%s\n",repeat(c));
+	scanf("%c",&input);
+	printf("%s\n",repeat(input));
 
 	return(0);
 }
