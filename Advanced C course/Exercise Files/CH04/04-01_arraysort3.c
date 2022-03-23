@@ -31,8 +31,12 @@ int main()
 		printf(" %3d",numbers[x]);
 	putchar('\n');
 
+	printf("el tamaño de un int es: %i", sizeof(int));
+
 	return(0);
+
 }
+
 
 int compare(const void *a, const void *b)
 {
