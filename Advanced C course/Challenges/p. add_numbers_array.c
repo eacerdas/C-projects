@@ -3,13 +3,9 @@
 //function that adds all the numbers in an array
 
 int add(int *b, int len){
-	int *a = b;
-	
 	static int total = 0;
-	
 	for(int i=0;i<len;i++)
-		total = total + a[i];
-	
+		total = total + b[i];
 	return total;
 }
 
@@ -19,8 +15,7 @@ int main () {
 	int tot = 0;
 	printf("Enter the quantity of numbers: \n");
 	scanf("%d", &size);
-	int array[size];
-	
+	int array[size]; //array [n,n,n,n,n,n]
 	printf("Enter the %d numbers: \n", size);
 	
 	for(int i=0;i<size;i++)

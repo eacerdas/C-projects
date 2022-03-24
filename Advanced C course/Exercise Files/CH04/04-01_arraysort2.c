@@ -6,7 +6,7 @@ void displayArray(int *a);
 
 int main()
 {
-	int numbers[SIZE] = { 55, 44, 99, 11, 77, 22, 33, 88, 66, 0 };
+	int str[SIZE];
 	int outer,inner,temp;
 
 /* Display the unsorted array */
@@ -27,18 +27,17 @@ int main()
 		}
 
 /* Display the sorted array */
-	puts("Sorted array:");
-	displayArray(numbers);
+	printf("the sorted text is: %s \n", str);
 
 	return(0);
 }
 
-void displayArray(int *a)
+/*void displayArray(int *a)
 {
 	int x;
 
 	for(x=0;x<SIZE;x++)
 		printf(" %3d",a[x]);
 	putchar('\n');
-}
+}*/
 
