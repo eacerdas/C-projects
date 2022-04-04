@@ -22,12 +22,6 @@ above.
 You can assume further details as long as you document them in your justification.*/
 
 //------------------------------------------------------------------------------
-/* I'm not sure if your intention was me to create the code in this page, 
-to track all my thougts while programming. I read "Submit the solution to 
-the following link" and I started working on visual, I though this page was 
-kind of a mail where I could send my solution. I'm sorry if did it wrong, 
-but here is my solution:*/
-//------------------------------------------------------------------------------
 
 /* Justification:
 For this problem I would definitely use a microcontroller, makes sense, due to its 
