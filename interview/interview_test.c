@@ -121,7 +121,7 @@ the control loop will turn off the heater so the liquid cools down at least unti
 #include <stdint.h>  // Necessary to use 8 and 16 bit integers.
 #include <inttypes.h> // To print the special integers
 
-#define TEST 0 // TEST 0 -> runs normally, TEST 1 -> runs tester
+#define TEST 1 // TEST 0 -> runs normally, TEST 1 -> runs tester
 
 /* Looking at the addresses, we have 2 bytes to store an integer that represents the 
 temp, so it can not be a normal integer because they are 4 bytes long. The same 
