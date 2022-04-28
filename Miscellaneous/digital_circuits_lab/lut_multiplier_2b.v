@@ -13,19 +13,19 @@ always @ (*) begin
   if (~reset) AB = 0; // reset
   else begin
     if (B == 2’ b00) begin
-    AB = 0;
+      AB = 0;
     end
     else if (B == 2’ b01) begin
-    AB = A;
+      AB = A;
     end
     else if (B == 2’ b10) begin
-    AB = A << 1;
+      AB = A << 1;
     end
     else if (B == 2’ b11) begin
-    AB = A + (A << 1);
+      AB = A + (A << 1);
     end
     else begin
-    AB = 0;
+      AB = 0;
     end
   end
 end
