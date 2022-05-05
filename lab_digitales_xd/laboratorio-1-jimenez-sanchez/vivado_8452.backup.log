@@ -1,0 +1,158 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 14 20:05:08 2021
+# Process ID: 8452
+# Current directory: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez
+# Command line: vivado
+# Log file: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/vivado.log
+# Journal file: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script '/home/robertsc/.Xilinx/Vivado/Vivado_init.tcl'
+start_gui
+open_project /home/robertsc/Ie424/vivado/picorv32.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/robertsc/Ie424/vivado/picorv32.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2020.2/data/ip'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+open_project: Time (s): cpu = 00:00:16 ; elapsed = 00:00:05 . Memory (MB): peak = 7270.676 ; gain = 53.094 ; free physical = 577 ; free virtual = 3784
+update_compile_order -fileset sources_1
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'system_tb' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim/firmware.hex'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+xvlog --incr --relax -prj system_tb_vlog.prj
+Waiting for jobs to finish...
+No pending jobs, compilation finished.
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+xelab -wto fb7ed032eb9d4dd89a8409652da8dac1 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot system_tb_behav xil_defaultlib.system_tb xil_defaultlib.glbl -log elaborate.log
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: /opt/Xilinx/Vivado/2020.2/bin/unwrapped/lnx64.o/xelab -wto fb7ed032eb9d4dd89a8409652da8dac1 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot system_tb_behav xil_defaultlib.system_tb xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '2' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "system_tb_behav -key {Behavioral:sim_1:Functional:system_tb} -tclbatch {system_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source system_tb.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'system_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:13 ; elapsed = 00:00:08 . Memory (MB): peak = 7386.504 ; gain = 76.809 ; free physical = 1427 ; free virtual = 3744
+run 10 ms
+"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"run: Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 7386.504 ; gain = 0.000 ; free physical = 1417 ; free virtual = 3776
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+close_sim: Time (s): cpu = 00:00:17 ; elapsed = 00:00:06 . Memory (MB): peak = 7386.711 ; gain = 0.000 ; free physical = 1221 ; free virtual = 3674
+launch_simulation
+Command: launch_simulation 
+INFO: [Vivado 12-5682] Launching behavioral simulation in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+INFO: [SIM-utils-51] Simulation object is 'sim_1'
+INFO: [SIM-utils-54] Inspecting design source files for 'system_tb' in fileset 'sim_1'...
+INFO: [SIM-utils-43] Exported '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim/firmware.hex'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE and ANALYZE' step in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+xvlog --incr --relax -prj system_tb_vlog.prj
+Waiting for jobs to finish...
+No pending jobs, compilation finished.
+INFO: [USF-XSim-69] 'compile' step finished in '1' seconds
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+xelab -wto fb7ed032eb9d4dd89a8409652da8dac1 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot system_tb_behav xil_defaultlib.system_tb xil_defaultlib.glbl -log elaborate.log
+Vivado Simulator 2020.2
+Copyright 1986-1999, 2001-2020 Xilinx, Inc. All Rights Reserved.
+Running: /opt/Xilinx/Vivado/2020.2/bin/unwrapped/lnx64.o/xelab -wto fb7ed032eb9d4dd89a8409652da8dac1 --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot system_tb_behav xil_defaultlib.system_tb xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+INFO: [USF-XSim-69] 'elaborate' step finished in '1' seconds
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in '/home/robertsc/Ie424/vivado/picorv32.sim/sim_1/behav/xsim'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "system_tb_behav -key {Behavioral:sim_1:Functional:system_tb} -tclbatch {system_tb.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2020.2
+Time resolution is 1 ps
+source system_tb.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'system_tb_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 7391.500 ; gain = 4.789 ; free physical = 1208 ; free virtual = 3664
+restart
+INFO: [Simtcl 6-17] Simulation restarted
+run 200 ms
+"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"FATAL_ERROR: Vivado Simulator kernel has discovered an exceptional condition from which it cannot recover. Process will terminate. For technical support on this issue, please open a WebCase with this project attached at http://www.xilinx.com/support.
+Time: 20814380 ns  Iteration: 0  Process: /system_tb/uut/picorv32_core/Always530_7
+  File: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/src/picorv32/picorv32.v
+ERROR: [Vivado 12-106] *** Exception: ui.utils.e: ui.frmwork.cmd.CommandFailedException: Unknown exception occurred ui.frmwork.cmd.CommandFailedException: Unknown exception occurred
+	at ui.views.simulator.executive.simulationi.SimulationExecutive_getCallStacksData(Native Method)
+	at ui.views.N.c.a.jJP(SourceFile:1302)
+	at ui.views.N.a.z.reset(SourceFile:393)
+	at ui.views.N.a.y.reset(SourceFile:274)
+	at ui.views.N.a.w.reset(SourceFile:67)
+	at ui.views.N.a.B.reset(SourceFile:124)
+	at ui.views.N.a.B.handleTclEvent(SourceFile:108)
+	at ui.frmwork.a.o.c(SourceFile:42)
+	at ui.frmwork.E.i(SourceFile:253)
+	at ui.frmwork.E.fireTclEvent(SourceFile:350)
+	at ui.views.simulator.executive.simulationi.SimulationExecutive_mouseSelectTreeWindowEvent(Native Method)
+	at ui.views.N.c.a.a(SourceFile:818)
+	at ui.views.N.h.c.a(SourceFile:300)
+	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:85)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+	at ui.frmwork.a.d.dispatchEvent(SourceFile:92)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+ (See /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/vivado_pid8452.debug)
+bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"bÂ"

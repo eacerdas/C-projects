@@ -1,0 +1,22 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Wed Apr 14 20:05:08 2021
+# Process ID: 8452
+# Current directory: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez
+# Command line: vivado
+# Log file: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/vivado.log
+# Journal file: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/robertsc/Ie424/vivado/picorv32.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+source system_tb.tcl
+run 10 ms
+close_sim
+launch_simulation
+source system_tb.tcl
+restart
+run 200 ms

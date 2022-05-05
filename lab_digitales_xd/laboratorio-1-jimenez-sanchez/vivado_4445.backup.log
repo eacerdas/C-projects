@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:47 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Sat Apr 17 20:32:11 2021
+# Process ID: 4445
+# Current directory: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez
+# Command line: vivado
+# Log file: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/vivado.log
+# Journal file: /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/vivado.jou
+#-----------------------------------------------------------
+Sourcing tcl script '/home/robertsc/.Xilinx/Vivado/Vivado_init.tcl'
+start_gui
+open_project /home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory '/home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/project_1.gen/sources_1'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2020.2/data/ip'.
+INFO: [IP_Flow 19-3899] Cannot get the environment domain name variable for the component vendor name. Setting the vendor name to 'user.org'.
+update_compile_order -fileset sources_1
+exit
+INFO: [Common 17-206] Exiting Vivado at Sat Apr 17 20:33:32 2021...
