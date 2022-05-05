@@ -1,0 +1,15 @@
+logs/
+vivado/
+.Xil/
+.vscode/
+
+*.jou
+*.log
+*.str
+
+*.bin
+*.elf
+*.hex
+*.map
+
+*.vagrant
