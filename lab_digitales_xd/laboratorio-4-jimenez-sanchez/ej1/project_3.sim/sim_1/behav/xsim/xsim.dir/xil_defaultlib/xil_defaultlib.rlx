@@ -1,0 +1,8 @@
+0.7
+2020.2
+Nov 18 2020
+09:20:35
+/home/robertsc/Documents/labDigitales/LabDigitales/Laboratorios/Lab7/laboratorio-7-grupo-3-master/src/ejercicio1/picorv32/picorv32.v,1616018750,verilog,,/home/robertsc/Documents/labDigitales/LabDigitales/Laboratorios/Lab7/laboratorio-7-grupo-3-master/src/ejercicio1/verilog/system.v,,picorv32;picorv32_axi;picorv32_axi_adapter;picorv32_pcpi_div;picorv32_pcpi_fast_mul;picorv32_pcpi_mul;picorv32_regs;picorv32_wb,,,,,,,,
+/home/robertsc/Documents/labDigitales/LabDigitales/Laboratorios/Lab7/laboratorio-7-grupo-3-master/src/ejercicio1/verilog/system.v,1627260222,verilog,,/home/robertsc/Documents/labDigitales/LabDigitales/Laboratorios/Lab7/laboratorio-7-grupo-3-master/src/ejercicio1/verilog/system_tb.v,,system,,,,,,,,
+/home/robertsc/Documents/labDigitales/LabDigitales/Laboratorios/Lab7/laboratorio-7-grupo-3-master/src/ejercicio1/verilog/system_tb.v,1616018752,verilog,,,,system_tb,,,,,,,,
+/home/robertsc/Documents/labDigitales/laboratorio-4-jimenez-sanchez/ej1/project_3.sim/sim_1/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,,,,,,,
