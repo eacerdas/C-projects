@@ -1,8 +1,0 @@
-0.7
-2020.2
-Nov 18 2020
-09:20:35
-/home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/project_1.sim/sim_1/behav/xsim/glbl.v,1605673889,verilog,,,,glbl,,,,,,,,
-/home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/src/picorv32/picorv32.v,1618449349,verilog,,/home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/src/verilog/system.v,,picorv32;picorv32_axi;picorv32_axi_adapter;picorv32_pcpi_div;picorv32_pcpi_fast_mul;picorv32_pcpi_mul;picorv32_regs;picorv32_wb,,,,,,,,
-/home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/src/verilog/system.v,1618449349,verilog,,/home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/src/verilog/system_tb.v,,system,,,,,,,,
-/home/robertsc/Documents/labDigitales/laboratorio-1-jimenez-sanchez/src/verilog/system_tb.v,1618454398,verilog,,,,system_tb,,,,,,,,
