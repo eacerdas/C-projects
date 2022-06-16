@@ -27,7 +27,10 @@
 // LED instalado en pin D2
 //...................................
 
-int PWM_value = 0;
+int *payloadValue = 0;
+int counter = 0;
+int *manualMode = 0;
+int brightness = 0;
 
 // Update these with values suitable for your network.
 const char* ssid = "Cerdas Fonseca";
@@ -85,34 +88,29 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // converts the payload to an integer, to use it for controlling PWM
   
   payload[length] = '\0'; // Add a NULL to the end of the char* to make it a string.
-  int PWM_value = atoi((char *)payload);
-
-  // prints the PWM value
   
+  *payloadValue = atoi((char *)payload); //transforms the payload as an integer
+
+  // prints the payload value for debugging purposes
+ 
   Serial.println();
   Serial.print("***");
   Serial.println();
-  Serial.print("PWM_value: ");
-  Serial.print(PWM_value);
+  Serial.print("Payload value: ");
+  Serial.print(*payloadValue);
   Serial.println();
   Serial.print("***");
   Serial.println();
 
-  analogWrite(LEDPin, PWM_value);
-  delay(1);
-
-// To toggle on off 
-//  if ((char)payload[0] == '1') {
-//    digitalWrite(LEDPin, HIGH); Turn the LED off by making the voltage HIGH
-//  } else {
-//    digitalWrite(LEDPin, LOW);  // Turn the LED off by making the voltage LOW
-//  }
-
-  //...................................
-  //...................................
-
+  //change mode options -> 256 automatic, 257 manual
+  
+  if (*payloadValue == 256){
+    *manualMode = 0; //automatic mode
+  }
+  else if (*payloadValue == 257){
+    *manualMode = 1; //manual mode
+  }
 }
-
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
@@ -130,6 +128,7 @@ void reconnect() {
       
       // ... and resubscribe
       client.subscribe("Raspberry/Luz/Luz_1");
+      client.subscribe("Raspberry/Luz/Modo_Luz_1");
       client.subscribe("Raspberry/Luz/LuzPWM_1");
       //client.subscribe("Raspberry/Luz/Luz_2");
       
@@ -143,7 +142,30 @@ void reconnect() {
   }
 }
 
+void operation_mode(int *manualMode, int *payloadValue){
+  if (*manualMode == 0){ //auto mode
+    if (counter <= 255){
+      counter = counter + 1;
+      analogWrite(LEDPin, counter);
+    }
+    else{
+      counter = 0;
+      analogWrite(LEDPin, counter);
+    }    
+  }
+  if (*manualMode == 1){
+    counter = 0;
+    if ((*payloadValue >= 0) & (*payloadValue <= 255)){
+      brightness = *payloadValue;
+      analogWrite(LEDPin, brightness);
+    }
+  } 
+}
+
 void setup() {
+  manualMode = (int *) malloc(sizeof(int)*1);
+  payloadValue = (int *) malloc(sizeof(int)*1);
+  
   //...................................
   //...................................
   pinMode(LEDPin, OUTPUT);     // Initialize the D2 pin as an output
@@ -157,21 +179,24 @@ void setup() {
 }
 
 void loop() {
-
+  
   if (!client.connected()) {
     reconnect();
   }
+  
   client.loop();
 
-  //temperature simulation for example purposes only
-//  unsigned long now = millis();
-//  if (now - lastMsg > 5000) {
-    //lastMsg = now;
-    //++value;
-    //snprintf (msg, MSG_BUFFER_SIZE, "Sensor Temperatura #%ld", value);
-    //Serial.print("Publish message: ");
-    //Serial.println(msg);
-    //client.publish("Raspberry/Sensor/Sensor_1", msg);
-    //client.publish("Raspberry/Sensor/Sensor_2", msg);
-  }
+  operation_mode(manualMode, payloadValue); /// operates either in manual or automatic mode, depending on the user's selection
+
+  /// DEBUG purposes
+  Serial.println();
+  Serial.print("Manual mode value: ");
+  Serial.print(*manualMode);
+
+  Serial.println();
+  Serial.print("Payload value: ");
+  Serial.print(*payloadValue);
+  ///
+  
+  delay(5);
 }
