@@ -4,9 +4,9 @@
  with the ESP8266 board/library.
  It connects to an MQTT server then:
   - publishes "hello world" to the topic "Raspberry/Sensor/Sensor_1" every two seconds
-  - subscribes to the topic "Raspberry/Luz/Luz_2", printing out any messages
+  - subscribes to the topic "Raspberry/Luz/Luz_1", printing out any messages
     it receives. NB - it assumes the received payloads are strings not binary
-  - If the first character of the topic "Raspberry/Luz/Luz_2" is an 1, switch ON the ESP Led,
+  - If the first character of the topic "Raspberry/Luz/Luz_1" is an 1, switch ON the ESP Led,
     else switch it off
  It will reconnect to the server if the connection is lost using a blocking
  reconnect function. See the 'mqtt_reconnect_nonblocking' example for how to
@@ -21,14 +21,18 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 //...................................
-#define LEDPin   2  // PIN D2 - GPIO4
+#define LEDPin   4  // PIN D2 - GPIO4
 //...................................
 // BUILTIN_LED   POR D4
 // LED instalado en pin D2
 //...................................
 
-// Update these with values suitable for your network.
+int *payloadValue = 0;
+int counter = 0;
+int *manualMode = 0;
+int brightness = 0;
 
+// Update these with values suitable for your network.
 const char* ssid = "Cerdas Fonseca";
 const char* password = "antonio8";
 const char* mqtt_server = "192.168.100.16";
@@ -68,24 +72,44 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Mensaje Recibido [");
   Serial.print(topic);
   Serial.print("] ");
+  
+  Serial.print("***");
+  Serial.print("***");
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
+  Serial.print("***");
+  Serial.print("***");
+  
   Serial.println();
 
   //...................................
   //...................................
-  // Switch on the LED if an 1 was received as first character
-  if ((char)payload[0] == '1') {
-    digitalWrite(LEDPin, LOW);   // Turn the LED on (Note that LOW is the voltage level
-    // but actually the LED is on; this is because
-    // it is active low on the ESP-01)
-  } else {
-    digitalWrite(LEDPin, HIGH);  // Turn the LED off by making the voltage HIGH
-  }
-  //...................................
-  //...................................
+  // converts the payload to an integer, to use it for controlling PWM
+  
+  payload[length] = '\0'; // Add a NULL to the end of the char* to make it a string.
+  
+  *payloadValue = atoi((char *)payload); //transforms the payload as an integer
 
+  // prints the payload value for debugging purposes
+ 
+  Serial.println();
+  Serial.print("***");
+  Serial.println();
+  Serial.print("Payload value: ");
+  Serial.print(*payloadValue);
+  Serial.println();
+  Serial.print("***");
+  Serial.println();
+
+  //change mode options -> 256 automatic, 257 manual
+  
+  if (*payloadValue == 256){
+    *manualMode = 0; //automatic mode
+  }
+  else if (*payloadValue == 257){
+    *manualMode = 1; //manual mode
+  }
 }
 
 void reconnect() {
@@ -101,11 +125,11 @@ void reconnect() {
       // Once connected, publish an announcement...
       
       //client.publish("Raspberry/Sensor/Sensor_1", "Sensor Temperatura");
-      client.publish("Raspberry/Sensor/Sensor_2", "Sensor Temperatura");
+      //client.publish("Raspberry/Sensor/Sensor_2", "Sensor Temperatura");
       
       // ... and resubscribe
-      //client.subscribe("Raspberry/Luz/Luz_1");
-      client.subscribe("Raspberry/Luz/Luz_2");
+      client.subscribe("Raspberry/Luz/Modo_Luz_2");
+      client.subscribe("Raspberry/Luz/LuzPWM_2");
       
     } else {
       Serial.print("failed, rc=");
@@ -117,10 +141,33 @@ void reconnect() {
   }
 }
 
+void operation_mode(int *manualMode, int *payloadValue){
+  if (*manualMode == 0){ //auto mode
+    if (counter <= 255){
+      counter = counter + 1;
+      analogWrite(LEDPin, counter);
+    }
+    else{
+      counter = 0;
+      analogWrite(LEDPin, counter);
+    }    
+  }
+  if (*manualMode == 1){
+    counter = 0;
+    if ((*payloadValue >= 0) & (*payloadValue <= 255)){
+      brightness = *payloadValue;
+      analogWrite(LEDPin, brightness);
+    }
+  } 
+}
+
 void setup() {
+  manualMode = (int *) malloc(sizeof(int)*1);
+  payloadValue = (int *) malloc(sizeof(int)*1);
+  
   //...................................
   //...................................
-  pinMode(LEDPin, OUTPUT);     // Initialize the D4 pin as an output
+  pinMode(LEDPin, OUTPUT);     // Initialize the D2 pin as an output
   //...................................
   //...................................
   
@@ -131,20 +178,24 @@ void setup() {
 }
 
 void loop() {
-
+  
   if (!client.connected()) {
     reconnect();
   }
+
   client.loop();
 
-  unsigned long now = millis();
-  if (now - lastMsg > 5000) {
-    lastMsg = now;
-    ++value;
-    snprintf (msg, MSG_BUFFER_SIZE, "Sensor Temperatura #%ld", value);
-    Serial.print("Publish message: ");
-    Serial.println(msg);
-    //client.publish("Raspberry/Sensor/Sensor_1", msg);
-    client.publish("Raspberry/Sensor/Sensor_2", msg);
-  }
+  operation_mode(manualMode, payloadValue); /// operates either in manual or automatic mode, depending on the user's selection
+
+  /// DEBUG purposes
+  Serial.println();
+  Serial.print("Manual mode value: ");
+  Serial.print(*manualMode);
+
+  Serial.println();
+  Serial.print("Payload value: ");
+  Serial.print(*payloadValue);
+  ///
+  
+  delay(5);
 }

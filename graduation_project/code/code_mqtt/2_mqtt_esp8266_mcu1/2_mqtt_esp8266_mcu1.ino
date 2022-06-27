@@ -111,6 +111,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     *manualMode = 1; //manual mode
   }
 }
+
 void reconnect() {
   // Loop until we're reconnected
   while (!client.connected()) {
@@ -127,10 +128,8 @@ void reconnect() {
       //client.publish("Raspberry/Sensor/Sensor_2", "Sensor Temperatura");
       
       // ... and resubscribe
-      client.subscribe("Raspberry/Luz/Luz_1");
       client.subscribe("Raspberry/Luz/Modo_Luz_1");
       client.subscribe("Raspberry/Luz/LuzPWM_1");
-      //client.subscribe("Raspberry/Luz/Luz_2");
       
     } else {
       Serial.print("failed, rc=");
@@ -143,6 +142,7 @@ void reconnect() {
 }
 
 void operation_mode(int *manualMode, int *payloadValue){
+  
   if (*manualMode == 0){ //auto mode
     if (counter <= 255){
       counter = counter + 1;
@@ -153,6 +153,7 @@ void operation_mode(int *manualMode, int *payloadValue){
       analogWrite(LEDPin, counter);
     }    
   }
+  
   if (*manualMode == 1){
     counter = 0;
     if ((*payloadValue >= 0) & (*payloadValue <= 255)){
@@ -167,11 +168,9 @@ void setup() {
   payloadValue = (int *) malloc(sizeof(int)*1);
   
   //...................................
-  //...................................
   pinMode(LEDPin, OUTPUT);     // Initialize the D2 pin as an output
   //...................................
-  //...................................
-  
+
   Serial.begin(115200);
   setup_wifi();
   client.setServer(mqtt_server, 1883);
@@ -185,7 +184,7 @@ void loop() {
   }
   
   client.loop();
-
+  
   operation_mode(manualMode, payloadValue); /// operates either in manual or automatic mode, depending on the user's selection
 
   /// DEBUG purposes
