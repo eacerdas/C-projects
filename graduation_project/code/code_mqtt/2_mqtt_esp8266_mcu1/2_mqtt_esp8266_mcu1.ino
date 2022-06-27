@@ -1,16 +1,41 @@
+/*
+ Basic ESP8266 MQTT example
+ This sketch demonstrates the capabilities of the pubsub library in combination
+ with the ESP8266 board/library.
+ It connects to an MQTT server then:
+  - publishes "hello world" to the topic "Raspberry/Sensor/Sensor_1" every two seconds
+  - subscribes to the topic "Raspberry/Luz/Luz_1", printing out any messages
+    it receives. NB - it assumes the received payloads are strings not binary
+  - If the first character of the topic "Raspberry/Luz/Luz_1" is an 1, switch ON the ESP Led,
+    else switch it off
+ It will reconnect to the server if the connection is lost using a blocking
+ reconnect function. See the 'mqtt_reconnect_nonblocking' example for how to
+ achieve the same result without blocking the main loop.
+ To install the ESP8266 board, (using Arduino 1.6.4+):
+  - Add the following 3rd party board manager under "File -> Preferences -> Additional Boards Manager URLs":
+       http://arduino.esp8266.com/stable/package_esp8266com_index.json
+  - Open the "Tools -> Board -> Board Manager" and click install for the ESP8266"
+  - Select your ESP8266 in "Tools -> Board"
+*/
+
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-
+//...................................
 #define LEDPin   4  // PIN D2 - GPIO4
+//...................................
+// BUILTIN_LED   POR D4
+// LED instalado en pin D2
+//...................................
 
 int *payloadValue = 0;
 int counter = 0;
 int *manualMode = 0;
 int brightness = 0;
 
-const char* ssid = "nombre de la red";
-const char* password = "contraseña de la red";
-const char* mqtt_server = "IP del bróker";
+// Update these with values suitable for your network.
+const char* ssid = "Cerdas Fonseca";
+const char* password = "antonio8";
+const char* mqtt_server = "192.168.100.16";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -22,8 +47,9 @@ int value = 0;
 void setup_wifi() {
 
   delay(10);
+  // We start by connecting to a WiFi network
   Serial.println();
-  Serial.print("Conectandose a ");
+  Serial.print("Connecting to ");
   Serial.println(ssid);
 
   WiFi.mode(WIFI_STA);
@@ -35,9 +61,10 @@ void setup_wifi() {
   }
 
   randomSeed(micros());
+
   Serial.println("");
-  Serial.println("WiFi conectado");
-  Serial.println("Dirección IP: ");
+  Serial.println("WiFi connected");
+  Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
 }
 
@@ -56,10 +83,16 @@ void callback(char* topic, byte* payload, unsigned int length) {
   
   Serial.println();
 
-  // convierte el valor recibido a un numero entero y luego lo imprime en consola
+  //...................................
+  //...................................
+  // converts the payload to an integer, to use it for controlling PWM
+  
   payload[length] = '\0'; // Add a NULL to the end of the char* to make it a string.
+  
   *payloadValue = atoi((char *)payload); //transforms the payload as an integer
 
+  // prints the payload value for debugging purposes
+ 
   Serial.println();
   Serial.print("***");
   Serial.println();
@@ -69,49 +102,45 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("***");
   Serial.println();
 
-  opciones -> 256 automatico, 257 manual
+  //change mode options -> 256 automatic, 257 manual
   
   if (*payloadValue == 256){
-    *manualMode = 0; //automatico
+    *manualMode = 0; //automatic mode
   }
   else if (*payloadValue == 257){
-    *manualMode = 1; //manual
+    *manualMode = 1; //manual mode
   }
 }
 
 void reconnect() {
-  // Loop hasta que se reconecte
+  // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-    // creando ID aleatorio
+    // Create a random client ID
     String clientId = "ESP8266Client-";
     clientId += String(random(0xffff), HEX);
-    // Intentando conectar
+    // Attempt to connect
     if (client.connect(clientId.c_str())) {
-      Serial.println("conectado");
-
-      //se crean los temas y se suscribe a ellos
-
-      //mcu1:
+      Serial.println("connected");
+      // Once connected, publish an announcement...
+      
+      //client.publish("Raspberry/Sensor/Sensor_1", "Sensor Temperatura");
+      //client.publish("Raspberry/Sensor/Sensor_2", "Sensor Temperatura");
+      
+      // ... and resubscribe
       client.subscribe("Raspberry/Luz/Modo_Luz_1");
       client.subscribe("Raspberry/Luz/LuzPWM_1");
-
-      //mcu2: 
-      //client.subscribe("Raspberry/Luz/Modo_Luz_1");
-      //client.subscribe("Raspberry/Luz/LuzPWM_1");
-
+      
     } else {
-      Serial.print("fallido, rc=");
+      Serial.print("failed, rc=");
       Serial.print(client.state());
-      Serial.println(" intentando de nuevo en 5 segundos");
+      Serial.println(" try again in 5 seconds");
       // Wait 5 seconds before retrying
       delay(5000);
     }
   }
 }
 
-//función que define el modo de control -> manual o automatico
-//dependiendo del valor que llegue al broker 
 void operation_mode(int *manualMode, int *payloadValue){
   
   if (*manualMode == 0){ //auto mode
@@ -134,14 +163,13 @@ void operation_mode(int *manualMode, int *payloadValue){
   } 
 }
 
-//
 void setup() {
-  //se reserva memoria para los punteros
   manualMode = (int *) malloc(sizeof(int)*1);
   payloadValue = (int *) malloc(sizeof(int)*1);
-
-  // se define el pin como salida
-  pinMode(LEDPin, OUTPUT);
+  
+  //...................................
+  pinMode(LEDPin, OUTPUT);     // Initialize the D2 pin as an output
+  //...................................
 
   Serial.begin(115200);
   setup_wifi();
@@ -149,7 +177,6 @@ void setup() {
   client.setCallback(callback);
 }
 
-//loop infinito
 void loop() {
   
   if (!client.connected()) {
@@ -158,8 +185,17 @@ void loop() {
   
   client.loop();
   
-  /// operates either in manual or automatic mode, depending on the user's selection
-  operation_mode(manualMode, payloadValue); 
+  operation_mode(manualMode, payloadValue); /// operates either in manual or automatic mode, depending on the user's selection
+
+  /// DEBUG purposes
+  Serial.println();
+  Serial.print("Manual mode value: ");
+  Serial.print(*manualMode);
+
+  Serial.println();
+  Serial.print("Payload value: ");
+  Serial.print(*payloadValue);
+  ///
   
   delay(5);
 }
